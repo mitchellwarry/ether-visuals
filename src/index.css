@@ -5,20 +5,20 @@
 }
 
 :root {
-  --text: #6b6b6b;
-  --text-h: #0a0a0a;
-  --bg: #fff;
-  --border: #e0e0e0;
-  --code-bg: #f5f5f5;
-  --accent: #0a0a0a;
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #000000;
+  --border: #2a2a2a;
+  --code-bg: #1a1a1a;
+  --accent: #f3f4f6;
   --accent-gradient: linear-gradient(180deg, #ff8c42, #e63910);
   --accent-highlight: #ecb583;
 
-  --accent-bg: rgba(0, 0, 0, 0.06);
-  --accent-border: rgba(0, 0, 0, 0.3);
-  --social-bg: rgba(245, 245, 245, 0.5);
+  --accent-bg: rgba(255, 255, 255, 0.08);
+  --accent-border: rgba(255, 255, 255, 0.3);
+  --social-bg: rgba(30, 30, 30, 0.5);
   --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
@@ -26,7 +26,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: dark;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -39,24 +39,8 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #000000;
-    --border: #2a2a2a;
-    --code-bg: #1a1a1a;
-    --accent: #f3f4f6;
-    --accent-bg: rgba(255, 255, 255, 0.08);
-    --accent-border: rgba(255, 255, 255, 0.3);
-    --social-bg: rgba(30, 30, 30, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+#social .button-icon {
+  filter: invert(1) brightness(2);
 }
 
 .nav-header {
