@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import bg1 from "../../assets/background images/P1153922.jpg";
 import bg2 from "../../assets/background images/P1078197.jpg";
 import bg3 from "../../assets/background images/ptpnov-21.jpg";
@@ -27,6 +27,18 @@ const services = [
 export function WhatWeDo() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState<number | null>(null);
+  const [isDesktop, setIsDesktop] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(min-width: 1024px)").matches
+  );
+
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const handleChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   return (
     <section className="pt-12 pb-28 px-6 lg:pt-16 lg:pb-36 lg:px-12 2xl:pt-20 2xl:pb-48 2xl:px-30 max-w-375 mx-auto w-full">
@@ -44,7 +56,7 @@ export function WhatWeDo() {
           What <span className="text-accent-gradient">We </span>Create{" "}
         </h2>
       </div>
-      <div className="flex gap-4 h-137">
+      <div className="flex flex-col gap-4 lg:flex-row lg:h-137">
         {services.map((service, i) => {
           const isHovered = hoveredIndex === i;
           const anyHovered = hoveredIndex !== null;
@@ -52,17 +64,40 @@ export function WhatWeDo() {
           return (
             <div
               key={i}
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="relative overflow-hidden cursor-default"
+              onMouseEnter={() => {
+                if (isDesktop) setHoveredIndex(i);
+              }}
+              onMouseLeave={() => {
+                if (isDesktop) setHoveredIndex(null);
+              }}
+              onClick={() => {
+                if (!isDesktop) {
+                  setHoveredIndex((prev) => (prev === i ? null : i));
+                }
+              }}
+              className="relative overflow-hidden cursor-pointer lg:cursor-default h-75 lg:h-auto"
               style={{
-                flex: isHovered ? "1.4" : anyHovered ? "0.85" : "1",
+                flex: isDesktop
+                  ? isHovered
+                    ? "1.4"
+                    : anyHovered
+                    ? "0.85"
+                    : "1"
+                  : "none",
+                height: isDesktop
+                  ? undefined
+                  : isHovered
+                  ? "420px"
+                  : anyHovered
+                  ? "255px"
+                  : "300px",
                 borderRadius: "15px",
                 border: "1px solid var(--border)",
                 backgroundImage: `url(${service.bg})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                transition: "flex 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
+                transition:
+                  "flex 0.45s cubic-bezier(0.4, 0, 0.2, 1), height 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
               }}
             >
               {/* dark overlay */}
@@ -106,6 +141,7 @@ export function WhatWeDo() {
                     style={{ color: "var(--text-h)" }}
                     onMouseEnter={() => setHoveredBtn(i)}
                     onMouseLeave={() => setHoveredBtn(null)}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Get Started
                     <svg

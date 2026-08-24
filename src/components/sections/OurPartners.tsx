@@ -13,6 +13,9 @@ export interface PartnersProps {
 }
 
 export function OurPartners({ logos }: PartnersProps) {
+  const loopedLogos =
+    logos.length > 0 ? Array.from({ length: 3 }, () => logos).flat() : logos;
+
   return (
     <section className="relative py-2 px-16 lg:py-3 lg:px-32 2xl:py-4 2xl:px-60 w-full overflow-hidden">
       <div
@@ -23,7 +26,7 @@ export function OurPartners({ logos }: PartnersProps) {
       <div className="absolute inset-0" style={{ background: "#0a0a0a" }} />
       <div className="relative z-10 flex flex-col gap-8 max-w-480 mx-auto">
         <p
-          className="text-sm uppercase tracking-widest"
+          className="text-xs uppercase tracking-widest"
           style={{ color: "var(--text)" }}
         >
           Trusted By Businesses That Build
@@ -31,7 +34,7 @@ export function OurPartners({ logos }: PartnersProps) {
         <div className="min-w-0">
           <Swiper
             modules={[Autoplay]}
-            slidesPerView={4}
+            slidesPerView={1.15}
             spaceBetween={0}
             loop={true}
             speed={8000}
@@ -42,8 +45,8 @@ export function OurPartners({ logos }: PartnersProps) {
               1024: { slidesPerView: 4 },
             }}
           >
-            {logos.map((p) => (
-              <SwiperSlide key={p.name}>
+            {loopedLogos.map((p, i) => (
+              <SwiperSlide key={`${p.name}-${i}`}>
                 <img
                   src={p.src}
                   alt={p.alt}

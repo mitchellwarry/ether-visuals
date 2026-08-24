@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import type { BusinessShowcaseItem } from "../../data/businessShowcase";
 import "swiper/css";
 
@@ -7,20 +8,30 @@ export interface BusinessShowcaseProps {
 }
 
 export function BusinessShowcase({ items }: BusinessShowcaseProps) {
+  const loopedItems =
+    items.length > 0 ? Array.from({ length: 3 }, () => items).flat() : items;
+
   return (
     <section className="py-12 lg:py-16 2xl:py-20 w-full">
       <Swiper
+        modules={[Autoplay]}
+        loop
+        speed={10000}
+        autoplay={{ delay: 0, disableOnInteraction: false }}
+        allowTouchMove={false}
         slidesPerView={1.15}
         spaceBetween={15}
         breakpoints={{
-          768: {
+          1440: {
             slidesPerView: 3,
             spaceBetween: 15,
+            loop: false,
+            autoplay: false,
             allowTouchMove: false,
           },
         }}
       >
-        {items.map((item, i) => (
+        {loopedItems.map((item, i) => (
           <SwiperSlide key={i}>
             <div
               className="relative overflow-hidden"

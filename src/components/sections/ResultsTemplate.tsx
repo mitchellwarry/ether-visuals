@@ -155,10 +155,10 @@ export default function ResultsTemplate(props: ResultsTemplate) {
               ))}
             </div>
             <div>
-              <h2 className="text-5xl! lg:text-5xl! font-bold! text-white uppercase tracking-tight m-0 text-left max-w-[60%]">
+              <h2 className="text-2xl! lg:text-5xl! font-bold! text-white uppercase tracking-tight m-0 text-left lg:max-w-[60%]">
                 {props.heading}
               </h2>
-              <p className="text-m text-white/60 mb-3 text-left max-w-[60%]">
+              <p className="text-sm lg:text-m text-white/60 mb-3 text-left lg:max-w-[60%]">
                 {props.subheading}
               </p>
             </div>
@@ -169,18 +169,18 @@ export default function ResultsTemplate(props: ResultsTemplate) {
         <div className="px-8 lg:px-16 py-12 lg:py-16 flex flex-col gap-12">
           {/* Case study highlight row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-            <div className="flex flex-col gap-6 justify-center">
+            <div className="flex flex-col gap-6 justify-center order-2 lg:order-0">
               <div className="text-sm leading-relaxed text-(--text) space-y-3 text-left whitespace-pre-line">
                 {props.caseStudyBody}
               </div>
             </div>
-            <div className="relative">
+            <div className="relative order-1 lg:order-0">
               {props.caseStudyVideo ? (
                 <>
                   <video
                     ref={videoRef}
                     src={props.caseStudyVideo}
-                    className="w-full object-cover rounded-xl"
+                    className="w-full object-cover rounded-xl max-[420px]:h-105"
                     style={{ maxHeight: "500px", cursor: "pointer" }}
                     loop
                     playsInline
@@ -306,8 +306,8 @@ export default function ResultsTemplate(props: ResultsTemplate) {
           <hr className="border-(--border) m-0" />
 
           {/* Testimonial */}
-          <div className="flex flex-row items-start justify-between gap-8 w-full border-l-accent-gradient pl-8">
-            <p className="text-l lg:text-l text-white leading-relaxed m-0 text-left max-w-[55%] whitespace-pre-line">
+          <div className="flex flex-col lg:flex-row items-start justify-between gap-8 w-full border-l-accent-gradient pl-8">
+            <p className="text-l lg:text-l text-white leading-relaxed m-0 text-left lg:max-w-[55%] whitespace-pre-line">
               &ldquo;{props.testimonial}&rdquo;
             </p>
             {/* Testimonial Titles */}
@@ -324,7 +324,7 @@ export default function ResultsTemplate(props: ResultsTemplate) {
                 <div className="client-name text-lg text-left font-bold text-white uppercase">
                   {props.clientName}
                 </div>
-                <div className="company-role text-sm flex  text-gray-400 gap-3 uppercase text-left">
+                <div className="company-role text-sm flex flex-col lg:flex-row text-gray-400 gap-3 uppercase text-left">
                   <p>{props.companyRole},</p>
                   <p>{props.companyName}</p>
                 </div>
