@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
+import { useBookingForm } from "../../context/BookingFormContext";
 
 interface WorkPath {
   name: string;
@@ -52,10 +53,54 @@ const paths: WorkPath[] = [
 
 export function WaysToWorkWithUs() {
   const [isHovered, setIsHovered] = useState(false);
+  const { openForm } = useBookingForm();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [isTouchLayout, setIsTouchLayout] = useState(false);
+  const [inViewCards, setInViewCards] = useState<Set<string>>(new Set());
+  const cardRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 1023px)");
+    const update = () => setIsTouchLayout(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (!isTouchLayout) {
+      setInViewCards(new Set());
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setInViewCards((prev) => {
+          const next = new Set(prev);
+          entries.forEach((entry) => {
+            const name = entry.target.getAttribute("data-card-name");
+            if (!name) return;
+            if (entry.isIntersecting) {
+              next.add(name);
+            } else {
+              next.delete(name);
+            }
+          });
+          return next;
+        });
+      },
+      { threshold: 0, rootMargin: "-35% 0px -35% 0px" },
+    );
+
+    Object.values(cardRefs.current).forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [isTouchLayout]);
 
   return (
-    <section className="py-12 px-6 lg:py-16 lg:px-12 2xl:py-20 2xl:px-30 max-w-375 mx-auto w-full">
+    <section className="pt-30 pb-40 px-6 lg:py-16 lg:px-12 2xl:py-20 2xl:px-30 max-w-375 mx-auto w-full">
       <p
         className="text-sm uppercase tracking-widest text-left"
         style={{ color: "var(--text)" }}
@@ -94,11 +139,17 @@ export function WaysToWorkWithUs() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-16 items-stretch">
         {paths.map((path) => {
-          const isCardHovered = hoveredCard === path.name;
+          const isCardHovered = isTouchLayout
+            ? inViewCards.has(path.name)
+            : hoveredCard === path.name;
 
           return (
             <div
               key={path.name}
+              ref={(el) => {
+                cardRefs.current[path.name] = el;
+              }}
+              data-card-name={path.name}
               className="relative flex flex-col text-left p-12 transition-colors duration-300"
               onMouseEnter={() => setHoveredCard(path.name)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -176,6 +227,7 @@ export function WaysToWorkWithUs() {
           style={{ background: "var(--accent-gradient)" }}
         >
           <button
+            onClick={openForm}
             className="flex items-center justify-center gap-3 px-8 py-3 text-sm tracking-widest uppercase rounded-sm transition-colors duration-300"
             style={{
               background: isHovered ? "var(--accent-gradient)" : "var(--bg)",

@@ -126,7 +126,7 @@ export default function ResultsTemplate(props: ResultsTemplate) {
   }, []);
 
   return (
-    <section className="py-8 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
+    <section className="py-15 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
       <div className="border border-white/10 rounded-xl overflow-hidden bg-linear-to-b from-white/8 to-white/3">
         {/* Banner */}
         <div
@@ -212,7 +212,7 @@ export default function ResultsTemplate(props: ResultsTemplate) {
 
           {/* Stats tagline bar */}
           <div className="flex items-center justify-between border-t border-b border-(--border) py-4">
-            <p className="text-s uppercase tracking-widest text-(--text) m-0 text-left">
+            <p className="text-xs lg:text-s uppercase tracking-widest text-(--text) m-0 text-left">
               {props.statsHeader}
             </p>
             <Calendar size={32} className="text-(--text) shrink-0" />
@@ -278,7 +278,9 @@ export default function ResultsTemplate(props: ResultsTemplate) {
                       trigger={statsRevealed}
                     />
                   </p>
-                  <p className="text-sm text-(--text) m-0">{stat.descriptor}</p>
+                  <p className="text-xs lg:text-sm text-(--text) m-0">
+                    {stat.descriptor}
+                  </p>
                 </div>
               </div>
             ))}
@@ -321,10 +323,10 @@ export default function ResultsTemplate(props: ResultsTemplate) {
               </div>
               <div className="names flex flex-col">
                 {" "}
-                <div className="client-name text-lg text-left font-bold text-white uppercase">
+                <div className="client-name text-sm lg:text-lg text-left font-bold text-white uppercase pb-2">
                   {props.clientName}
                 </div>
-                <div className="company-role text-sm flex flex-col lg:flex-row text-gray-400 gap-3 uppercase text-left">
+                <div className="company-role text-xs lg:text-sm flex flex-col lg:flex-row text-gray-400 uppercase gap-1 text-left">
                   <p>{props.companyRole},</p>
                   <p>{props.companyName}</p>
                 </div>

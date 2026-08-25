@@ -12,7 +12,7 @@ export function BusinessShowcase({ items }: BusinessShowcaseProps) {
     items.length > 0 ? Array.from({ length: 3 }, () => items).flat() : items;
 
   return (
-    <section className="py-12 lg:py-16 2xl:py-20 w-full">
+    <section className="py-25 lg:py-16 2xl:py-20 w-full">
       <Swiper
         modules={[Autoplay]}
         loop

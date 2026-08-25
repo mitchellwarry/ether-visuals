@@ -11,7 +11,7 @@ export function IndustryGrid({ projects }: IndustryGridProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <section className="pb-8 px-6 lg:pb-12 lg:px-12 2xl:pb-30 2xl:px-30 max-w-480 mx-auto w-full">
+    <section className="py-30 px-6 lg:pb-12 lg:px-12 2xl:pb-30 2xl:px-30 max-w-480 mx-auto w-full">
       <div className="px-6 lg:px-12 2xl:px-30 max-w-480 mx-auto w-full pt-8 lg:pt-12 2xl:pt-30 pb-20">
         <p
           className="text-sm uppercase tracking-widest"

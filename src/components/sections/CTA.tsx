@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useBookingForm } from "../../context/BookingFormContext";
 
 export function CTA() {
   const [hovered, setHovered] = useState(false);
+  const { openForm } = useBookingForm();
 
   return (
     <section
@@ -35,6 +37,7 @@ export function CTA() {
           style={{ background: "var(--accent-gradient)" }}
         >
           <button
+            onClick={openForm}
             className="flex items-center gap-3 px-6 py-3 text-sm tracking-widest uppercase rounded-sm transition-colors duration-300"
             style={{
               background: hovered ? "black" : "var(--accent-gradient)",

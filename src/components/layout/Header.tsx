@@ -1,41 +1,57 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import etherVisualsIcon from "../../assets/brand/ether-visuals-icon.png";
+import { useBookingForm } from "../../context/BookingFormContext";
+
+const sectionLinks = [
+  { id: "home", label: "Home" },
+  { id: "our-work", label: "Our Work" },
+  { id: "results", label: "Results" },
+];
 
 const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/our-work", label: "Our Work" },
-  { to: "/results", label: "Results" },
-  { to: "/our-work", label: "Book Now" },
+  ...sectionLinks.map(({ id, label }) => ({
+    id,
+    label,
+    href: `#${id}`,
+    isCta: false,
+  })),
+  { id: "book-now", label: "Book Now", href: "#book-now-form", isCta: true },
 ];
 
 function NavLinksList({
   variant,
+  activeId,
   onLinkClick,
 }: {
   variant: "desktop" | "mobile";
+  activeId: string;
   onLinkClick?: () => void;
 }) {
+  const { openForm } = useBookingForm();
+
   return (
     <ul className={`nav-links nav-links--${variant}`}>
-      {navLinks.map(({ to, label }) => (
-        <li key={`${variant}-${to}-${label}`}>
-          <NavLink
-            to={to}
-            end={to === "/"}
-            onClick={onLinkClick}
-            className={({ isActive }) =>
-              [
-                "nav-link",
-                isActive && "nav-link--active",
-                label === "Book Now" && "nav-link--cta",
-              ]
-                .filter(Boolean)
-                .join(" ")
-            }
+      {navLinks.map(({ id, label, href, isCta }) => (
+        <li key={`${variant}-${id}-${label}`}>
+          <a
+            href={href}
+            onClick={(e) => {
+              if (id === "book-now") {
+                e.preventDefault();
+                openForm();
+              }
+              onLinkClick?.();
+            }}
+            className={[
+              "nav-link",
+              !isCta && activeId === id && "nav-link--active",
+              isCta && "nav-link--cta",
+            ]
+              .filter(Boolean)
+              .join(" ")}
           >
             <span>{label}</span>
-          </NavLink>
+          </a>
         </li>
       ))}
     </ul>
@@ -92,10 +108,51 @@ function NavSocials({ variant }: { variant: "desktop" | "mobile" }) {
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
+  const headerRef = useRef<HTMLElement>(null);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const setNavHeight = () => {
+      document.documentElement.style.setProperty(
+        "--nav-height",
+        `${header.offsetHeight}px`,
+      );
+    };
+
+    setNavHeight();
+    const resizeObserver = new ResizeObserver(setNavHeight);
+    resizeObserver.observe(header);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const sections = sectionLinks
+      .map(({ id }) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <header className="nav-header">
+    <header className="nav-header" ref={headerRef}>
       <nav className={`nav-inner${isOpen ? " nav-inner--open" : ""}`}>
         <div className="nav-top-row">
           <span className="nav-logo">
@@ -107,7 +164,7 @@ export default function Header() {
             Ether Visuals
           </span>
 
-          <NavLinksList variant="desktop" />
+          <NavLinksList variant="desktop" activeId={activeId} />
 
           <span className="nav-divider nav-divider--desktop" aria-hidden="true" />
           <NavSocials variant="desktop" />
@@ -127,7 +184,11 @@ export default function Header() {
 
         <div className="nav-mobile-panel">
           <div className="nav-mobile-panel-inner">
-            <NavLinksList variant="mobile" onLinkClick={closeMenu} />
+            <NavLinksList
+              variant="mobile"
+              activeId={activeId}
+              onLinkClick={closeMenu}
+            />
             <span className="nav-divider nav-divider--mobile" aria-hidden="true" />
             <NavSocials variant="mobile" />
           </div>
