@@ -19,7 +19,7 @@ export const pristineTreePeopleData: ResultsTemplate = {
   bannerImageAlt: "",
   descriptors: ["Short-Form Videos", "Content Strategy", "Brand Positioning"],
   caseStudyBody:
-    "When Pristine Tree People approached Ether Visuals in late 2023, they were struggling with unreliable marketing that failed to capture their true vision. Our immediate goal was to replace that inconsistency with a recognizable, authoritative identity centered on their promise of keeping properties pristine. By utilizing strategic videography and highlighting the team's natural humor and authenticity, we turned everyday arboriculture into highly engaging, relatable, and shareable content. \n\n This personality-led approach sparked incredible organic growth, scaling their Instagram presence from 200 to nearly 2,400 followers and driving over 10,000 profile views in just a 90-day period. We also intentionally targeted an audience of fellow tradespeople and arborists, elevating their industry authority and opening doors for future brand partnerships. This newfound digital visibility directly supported their expansion from private residential work to securing large-scale council, school, and high-end luxury property contracts. \n\n Most importantly, this high-performing content engine translated into massive operational scale. Growing from a small setup into two fully operational crews, Pristine Tree People is now consistently booked out more than three months in advance. Without relying on paid lead-generation ads, their revitalized digital footprint now serves as a reliable driver of brand trust, inbound inquiries, and sustained business growth.",
+    "When Pristine Tree People approached us in late 2023, they were struggling with unreliable marketing that failed to capture their vision. We built a recognizable, authoritative identity around their promise of keeping properties pristine—using strategic videography and the team's natural humor to turn everyday arboriculture into engaging, shareable content that also targeted fellow tradespeople and arborists. \n\n This personality-led approach drove incredible growth, scaling Instagram from 200 to nearly 2,400 followers and over 10,000 profile views in 90 days, supporting expansion into council, school, and luxury property contracts. This translated into real operational scale—growing into two fully operational crews now booked out more than three months in advance, all without paid ads.",
   caseStudyVideo: "./src/assets/reels/Copy of Crane Job Breakdown.mp4",
   statsHeader: "Brand Report (NOV 2024 - TODAY)",
   stats: [
@@ -55,17 +55,13 @@ export const pristineTreePeopleData: ResultsTemplate = {
       body: "Intentionally built a following of local clients and trade professionals, positioning the brand for long-term partnerships.",
     },
     {
-      header: "Content That Builds Trust",
-      body: "Personality-driven storytelling allowed the team's natural character to shine, turning viewers into customers.",
-    },
-    {
       header: "It Created Real Momentum",
       body: "Content now directly contributes to lead flow, supporting business expansion into council and luxury commercial sectors.",
     },
   ],
 
   testimonial:
-    "Working with the Ether Visual lads has been a fantastic experience from start to finish. We enjoy having them on site with us collecting footage from all angles. \n\nWe wanted content that genuinely reflected the quality and atmosphere of our business, and they made the entire process feel easy, professional and very natural. \n\nThe finished content has elevated our brand presence, provided us with high-quality material we consistently use across our marketing, and has absolutely felt like a worthwhile investment.",
+    "Working with the Ether Visual lads has been a fantastic experience from start to finish. We enjoy having them on site with us collecting footage from all angles. We wanted content that genuinely reflected the quality and atmosphere of our business, and they made the entire process feel easy, professional and very natural. The finished content has elevated our brand presence, provided us with high-quality material we consistently use across our marketing, and has absolutely felt like a worthwhile investment.",
   clientName: "Alex Walker",
   companyName: "Pristine Tree People",
   companyRole: "Owner & Operator",

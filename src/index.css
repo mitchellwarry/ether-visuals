@@ -436,7 +436,7 @@ code {
   z-index: 1;
 }
 
-.booking-form-overlay {
+.calendly-overlay {
   position: fixed;
   inset: 0;
   z-index: 300;
@@ -450,7 +450,7 @@ code {
     visibility 0s linear 0.6s;
 }
 
-.booking-form-overlay--open {
+.calendly-overlay--open {
   transform: translateY(0);
   visibility: visible;
   transition:
@@ -458,79 +458,3 @@ code {
     visibility 0s linear 0s;
 }
 
-.booking-form-progress-track {
-  height: 3px;
-  width: 100%;
-  flex-shrink: 0;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.booking-form-progress-fill {
-  height: 100%;
-  background: var(--accent-gradient);
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes booking-step-in-forward {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes booking-step-in-back {
-  from {
-    opacity: 0;
-    transform: translateY(-28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.booking-step--forward {
-  animation: booking-step-in-forward 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.booking-step--back {
-  animation: booking-step-in-back 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.booking-option {
-  background: transparent;
-  cursor: pointer;
-  transition:
-    border-color 0.2s,
-    background 0.2s;
-}
-
-.booking-option:hover {
-  background: rgba(255, 255, 255, 0.04);
-}
-
-.booking-option--selected {
-  background: rgba(255, 140, 66, 0.08);
-}
-
-.booking-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1.5px solid var(--border);
-  color: var(--text-h);
-  font-family: var(--sans);
-  transition: border-color 0.2s;
-}
-
-.booking-input:focus {
-  outline: none;
-  border-bottom-color: var(--accent-highlight);
-}
-
-.booking-input::placeholder {
-  color: rgba(156, 163, 175, 0.45);
-}

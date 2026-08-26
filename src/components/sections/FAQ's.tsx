@@ -26,7 +26,7 @@ function HighlightChevron() {
 
 export function FAQ({ items = faqs }: { items?: FAQItem[] }) {
   return (
-    <section className="pt-8 pb-40 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
+    <section className="pt-6 pb-10 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
       <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-10 lg:gap-16 items-start">
         <div className="md:sticky md:top-24">
           <h2

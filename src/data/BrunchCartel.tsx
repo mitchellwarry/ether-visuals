@@ -16,7 +16,7 @@ export const brunchCartelData: ResultsTemplate = {
   bannerImageAlt: "",
   descriptors: ["Short-Form Content", "Brand Positioning", "Local Engagement"],
   caseStudyBody:
-    "Our collaboration began as a focused six-month retainer aimed at capturing the true energy of Franco and Rachel’s portable brunch trailer. Rather than just showcasing their bold sandwiches and creative drinks, we built a dynamic brand identity around the couple themselves. By using authentic, short-form storytelling, we translated their daily operations into a highly engaging online presence that reflected the unique culture and personality behind the business.\n\n This targeted digital visibility quickly translated into massive operational growth. By generating over 200,000 organic video views, we helped scale their Instagram audience from 400 to 2,200 highly engaged local followers—without any ad spend. The resulting surge in foot traffic allowed Brunch Cartel to expand from a four-day operation to a full seven-day trading schedule, ultimately requiring four additional staff members to keep up with the soaring regional demand.\n\n Beyond driving viral moments and brand awareness, we strategically funneled this new audience toward their online ordering platform, turning social engagement into measurable, real-world transactions. Supported by their ongoing community giveaways and local charity initiatives, this digital momentum has firmly cemented Brunch Cartel as a thriving, family-run staple within the Illawarra food scene.",
+    "Our collaboration began as a focused six-month retainer to capture the true energy of Franco and Rachel’s portable brunch trailer. Rather than just showcasing their bold sandwiches and creative drinks, we built a dynamic brand identity around the couple themselves, using authentic, short-form storytelling to reflect the unique culture and personality behind the business.\n\n This targeted visibility drove massive operational growth—over 200,000 organic video views scaled their Instagram from 400 to 2,200 highly engaged local followers without any ad spend, fueling a surge in foot traffic that saw Brunch Cartel expand to full seven-day trading and add four new staff. By funneling this audience toward their online ordering platform and supporting it with community giveaways and charity initiatives, we turned engagement into real transactions and cemented Brunch Cartel as a thriving local staple.",
   caseStudyVideo: "./src/assets/reels/Copy of Iced Range.mp4",
   statsHeader: "Brand Report (NOV 2024 - TODAY)",
   stats: [
@@ -62,17 +62,13 @@ export const brunchCartelData: ResultsTemplate = {
       body: "Increased demand drove a shift to 7-day trading and the hiring of four new staff.",
     },
     {
-      header: "Community-Driven Loyalty",
-      body: "Gave back to its community through local events, giveaways, and charity catering.",
-    },
-    {
       header: "Turning Views into Transactions",
       body: "Successfully converted engagement into consistent daily revenue.",
     },
   ],
 
   testimonial:
-    "Working with Ether Visuals over the last 6 months has honestly been one of the best decisions we’ve made for Brunch Cartel. We wanted content that actually reflected our brand's energy, standards, and culture, and Dan absolutely nailed it. \n\nThe whole process was easy, professional, and genuine from day one. Since working together, our social presence and customer engagement have stepped up massively. \n\nThe content has helped us stand out locally, build stronger trust, and create a much more premium feel. We’ve definitely seen a return from it—not just financially, but in the way people view and talk about our business.",
+    "Working with Ether Visuals over the last 6 months has honestly been one of the best decisions we’ve made for Brunch Cartel. We wanted content that actually reflected our brand's energy, standards, and culture, and Dan absolutely nailed it. The whole process was easy, professional, and genuine from day one. Since working together, our social presence and customer engagement have stepped up massively. The content has helped us stand out locally, build stronger trust, and create a much more premium feel. We’ve definitely seen a return from it—not just financially, but in the way people view and talk about our business.",
   clientName: "Franco & Rachel",
   companyName: "Brunch Cartel",
   companyRole: "Owner & Operator",

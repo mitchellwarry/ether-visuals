@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
-import { useBookingForm } from "../../context/BookingFormContext";
+import { useCalendly } from "../../context/CalendlyContext";
 
 export function Hero() {
   const [primaryHovered, setPrimaryHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { openForm } = useBookingForm();
+  const { openCalendly } = useCalendly();
 
   const handlePlay = () => {
     videoRef.current?.play();
@@ -22,16 +22,19 @@ export function Hero() {
       <div className="absolute inset-0" style={{ background: "#000000" }} />
       <div className="relative z-10 flex flex-col items-center text-center gap-8 max-w-5xl">
         <div className="flex flex-col items-center">
-          <p className="text-m uppercase tracking-widest text-white/60">
-            Strategic Content for Builders, Trades &amp; Construction
+          <p className="text-xs lg:text-m uppercase tracking-widest text-white/60">
+            Builders, Designers, Developers & Trades
           </p>
-          <h1 className="text-5xl! lg:text-6xl! font-black! text-white uppercase tracking-tight leading-none">
-            You Do <span className="text-accent-gradient">Great Work</span>.
-            Does Your Online Presence Prove It?
+          <h1 className="text-4xl! lg:text-6xl! uppercase font-black! text-white tracking-tight leading-none">
+            <span className="text-accent-gradient">Guaranteed</span> results in{" "}
+            <span className="text-accent-gradient">90 </span>
+            <span className="lg:hidden">days</span>:
+            <br className="lg:hidden" /> More interest, DMs, and calls
+            <br className="lg:hidden" /> or we work for{" "}
+            <span className="text-accent-gradient">free</span>
           </h1>
           <p className="text-base lg:text-lg text-white/70 leading-relaxed max-w-2xl">
-            We turn your projects, people and expertise into content that builds
-            trust, strengthens your brand and helps win better work.
+            Watch the video to see how this works.
           </p>
         </div>
         <div
@@ -72,7 +75,7 @@ export function Hero() {
             style={{ background: "var(--accent-gradient)" }}
           >
             <button
-              onClick={openForm}
+              onClick={openCalendly}
               className="flex items-center gap-3 px-6 py-3 text-sm tracking-widest uppercase rounded-sm transition-colors duration-300"
               style={{
                 background: primaryHovered ? "black" : "var(--accent-gradient)",

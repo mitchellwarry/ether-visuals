@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { useBookingForm } from "../../context/BookingFormContext";
+import { useCalendly } from "../../context/CalendlyContext";
 
 export function CTA() {
   const [hovered, setHovered] = useState(false);
-  const { openForm } = useBookingForm();
+  const { openCalendly } = useCalendly();
 
   return (
     <section
@@ -37,7 +37,7 @@ export function CTA() {
           style={{ background: "var(--accent-gradient)" }}
         >
           <button
-            onClick={openForm}
+            onClick={openCalendly}
             className="flex items-center gap-3 px-6 py-3 text-sm tracking-widest uppercase rounded-sm transition-colors duration-300"
             style={{
               background: hovered ? "black" : "var(--accent-gradient)",

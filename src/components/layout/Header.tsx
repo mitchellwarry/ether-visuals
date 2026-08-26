@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import etherVisualsIcon from "../../assets/brand/ether-visuals-icon.png";
-import { useBookingForm } from "../../context/BookingFormContext";
+import { useCalendly } from "../../context/CalendlyContext";
 
 const sectionLinks = [
   { id: "home", label: "Home" },
@@ -15,7 +15,7 @@ const navLinks = [
     href: `#${id}`,
     isCta: false,
   })),
-  { id: "book-now", label: "Book Now", href: "#book-now-form", isCta: true },
+  { id: "book-now", label: "Book Now", href: "#", isCta: true },
 ];
 
 function NavLinksList({
@@ -27,7 +27,7 @@ function NavLinksList({
   activeId: string;
   onLinkClick?: () => void;
 }) {
-  const { openForm } = useBookingForm();
+  const { openCalendly } = useCalendly();
 
   return (
     <ul className={`nav-links nav-links--${variant}`}>
@@ -38,7 +38,7 @@ function NavLinksList({
             onClick={(e) => {
               if (id === "book-now") {
                 e.preventDefault();
-                openForm();
+                openCalendly();
               }
               onLinkClick?.();
             }}

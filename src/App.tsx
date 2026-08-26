@@ -1,15 +1,15 @@
 import Header from "./components/layout/Header";
 import Home from "./pages/Home";
-import ContactForm from "./components/sections/ContactForm";
-import { BookingFormProvider } from "./context/BookingFormContext";
+import Calendly from "./components/sections/Calendly";
+import { CalendlyProvider } from "./context/CalendlyContext";
 
 function App() {
   return (
-    <BookingFormProvider>
+    <CalendlyProvider>
       <Header />
       <Home />
-      <ContactForm />
-    </BookingFormProvider>
+      <Calendly />
+    </CalendlyProvider>
   );
 }
 

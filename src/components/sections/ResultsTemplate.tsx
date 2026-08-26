@@ -1,5 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Calendar, Play } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
 
 export interface ResultsTemplate {
   heading: React.ReactNode;
@@ -73,7 +76,7 @@ function CountUpNumber({
   );
 }
 
-export default function ResultsTemplate(props: ResultsTemplate) {
+function ResultsCard(props: ResultsTemplate) {
   const bannerRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -126,7 +129,7 @@ export default function ResultsTemplate(props: ResultsTemplate) {
   }, []);
 
   return (
-    <section className="py-15 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
+    <section className="pt-4 pb-15 px-6 lg:py-12 lg:px-12 2xl:py-30 2xl:px-30 max-w-480 mx-auto w-full">
       <div className="border border-white/10 rounded-xl overflow-hidden bg-linear-to-b from-white/8 to-white/3">
         {/* Banner */}
         <div
@@ -138,29 +141,16 @@ export default function ResultsTemplate(props: ResultsTemplate) {
           }}
         >
           <img
-            className="bannerImage w-full h-175 object-cover"
+            className="bannerImage w-full h-80 lg:h-100 object-cover"
             src={props.bannerImageSrc}
             alt={props.bannerImageAlt}
           />
           <div className="absolute inset-0 bg-black/40" />
           <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12 flex flex-col gap-4">
-            <div className="flex flex-wrap gap-2">
-              {props.descriptors.map((descriptor, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 border border-white/20 text-black text-xs uppercase tracking-wide rounded-full bg-(--accent-highlight)/50 backdrop-blur-xl"
-                >
-                  {descriptor}
-                </span>
-              ))}
-            </div>
             <div>
-              <h2 className="text-2xl! lg:text-5xl! font-bold! text-white uppercase tracking-tight m-0 text-left lg:max-w-[60%]">
+              <h2 className="text-3xl! lg:text-5xl! font-bold! text-white uppercase tracking-tight m-0 text-left lg:max-w-[75%]">
                 {props.heading}
               </h2>
-              <p className="text-sm lg:text-m text-white/60 mb-3 text-left lg:max-w-[60%]">
-                {props.subheading}
-              </p>
             </div>
           </div>
         </div>
@@ -245,12 +235,12 @@ export default function ResultsTemplate(props: ResultsTemplate) {
           {/* Stats grid — each card fades in individually */}
           <div
             ref={statsRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             {props.stats.slice(0, 3).map((stat) => (
               <div
                 key={stat.header}
-                className="flex flex-col justify-between border border-(--border) rounded-2xl p-6 bg-(--code-bg) text-left h-62.5"
+                className="flex flex-col justify-between border border-(--border) rounded-2xl p-4 bg-(--code-bg) text-left h-44"
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-s uppercase tracking-widest text-(--accent-highlight) m-0">
@@ -271,8 +261,8 @@ export default function ResultsTemplate(props: ResultsTemplate) {
                     </span>
                   )}
                 </div>
-                <div className="flex flex-col gap-3">
-                  <p className="text-4xl lg:text-5xl font-bold m-0 tracking-tight text-accent-gradient">
+                <div className="flex flex-col gap-1">
+                  <p className="text-2xl lg:text-3xl font-bold m-0 tracking-tight text-accent-gradient">
                     <CountUpNumber
                       value={stat.number}
                       trigger={statsRevealed}
@@ -290,7 +280,7 @@ export default function ResultsTemplate(props: ResultsTemplate) {
           <hr className="border-(--border) m-0" />
 
           {/* Outcome highlights — each item fades in individually */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
             {props.outcome.map((outcomes) => (
               <div key={outcomes.header} className="flex flex-col gap-3">
                 <p className="font-semibold text-(--accent-highlight) m-0 text-left">
@@ -308,8 +298,8 @@ export default function ResultsTemplate(props: ResultsTemplate) {
           <hr className="border-(--border) m-0" />
 
           {/* Testimonial */}
-          <div className="flex flex-col lg:flex-row items-start justify-between gap-8 w-full border-l-accent-gradient pl-8">
-            <p className="text-l lg:text-l text-white leading-relaxed m-0 text-left lg:max-w-[55%] whitespace-pre-line">
+          <div className="flex flex-col items-start justify-between gap-8 w-full border-l-accent-gradient pl-8">
+            <p className="text-sm lg:text-l text-white leading-normal m-0 text-left whitespace-pre-line">
               &ldquo;{props.testimonial}&rdquo;
             </p>
             {/* Testimonial Titles */}
@@ -336,5 +326,105 @@ export default function ResultsTemplate(props: ResultsTemplate) {
         </div>
       </div>
     </section>
+  );
+}
+
+export interface ResultsShowcaseProps {
+  items: ResultsTemplate[];
+}
+
+export default function ResultsShowcase({ items }: ResultsShowcaseProps) {
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(items.length <= 1);
+
+  return (
+    <div id="results">
+      <div className="px-6 lg:px-12 2xl:px-30 max-w-480 mx-auto w-full pt-8 lg:pt-12 2xl:pt-16 flex items-end justify-between gap-6">
+        <div>
+          <p
+            className="text-sm uppercase tracking-widest text-left"
+            style={{ color: "var(--text)" }}
+          >
+            Lorem Ipsum
+          </p>
+          <h2
+            className="text-4xl! lg:text-5xl! font-black! uppercase tracking-tight leading-tight mt-3 text-left"
+            style={{ color: "var(--text-h)" }}
+          >
+            Lorem Ipsum Dolor{" "}
+            <span className="text-accent-gradient">Sit Amet</span>
+          </h2>
+          <p
+            className="text-sm lg:text-base mt-4 text-left"
+            style={{ color: "var(--text)" }}
+          >
+            Click the arrows or swipe through to see real results from real
+            businesses.
+          </p>
+        </div>
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <button
+            type="button"
+            aria-label="Previous case study"
+            disabled={isBeginning}
+            onClick={() => swiper?.slidePrev()}
+            className="flex items-center justify-center w-12 h-12 rounded-full transition-opacity duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            style={{ background: "var(--accent-gradient)" }}
+          >
+            <ChevronLeft size={22} className="text-white" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next case study"
+            disabled={isEnd}
+            onClick={() => swiper?.slideNext()}
+            className="flex items-center justify-center w-12 h-12 rounded-full transition-opacity duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            style={{ background: "var(--accent-gradient)" }}
+          >
+            <ChevronRight size={22} className="text-white" />
+          </button>
+        </div>
+      </div>
+      <div className="flex lg:hidden items-center justify-center gap-3 px-6 pt-10">
+        <button
+          type="button"
+          aria-label="Previous case study"
+          disabled={isBeginning}
+          onClick={() => swiper?.slidePrev()}
+          className="flex items-center justify-center w-10 h-10 rounded-full transition-opacity duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          style={{ background: "var(--accent-gradient)" }}
+        >
+          <ChevronLeft size={22} className="text-white" />
+        </button>
+        <button
+          type="button"
+          aria-label="Next case study"
+          disabled={isEnd}
+          onClick={() => swiper?.slideNext()}
+          className="flex items-center justify-center w-10 h-10 rounded-full transition-opacity duration-300 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          style={{ background: "var(--accent-gradient)" }}
+        >
+          <ChevronRight size={22} className="text-white" />
+        </button>
+      </div>
+      <Swiper
+        onSwiper={setSwiper}
+        onSlideChange={(s) => {
+          setIsBeginning(s.isBeginning);
+          setIsEnd(s.isEnd);
+        }}
+        slidesPerView={1}
+        spaceBetween={15}
+        grabCursor
+        watchOverflow
+      >
+        {items.map((item, index) => (
+          <SwiperSlide key={index}>
+            <ResultsCard {...item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }

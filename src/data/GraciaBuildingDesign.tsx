@@ -21,7 +21,7 @@ export const graciaBuildingDesignData: ResultsTemplate = {
     "Organic Social Growth",
   ],
   caseStudyBody:
-    "Starting in July 2025 with no online presence, Maria faced the challenge of launching Gracia Building Design in a highly competitive architectural market. Our goal was to establish a premium digital identity that reflected the sophistication of her work while building immediate trust within the Illawarra and South Coast regions. By focusing on her expertise in luxury residential design, we positioned the brand as a professional and approachable leader in the local construction industry.\n\n We executed this vision through a blend of cinematic video production, educational content, and 'talking-head' segments that highlighted Maria’s deep industry knowledge. This strategy emphasized locality and professionalism, specifically targeting high-end developments such as duplexes and modern townhouses. By capturing her design process against the backdrop of the South Coast, we created a consistent narrative that bridged the gap between a new startup and a trusted, high-performance design firm.\n\n This organic approach yielded substantial growth, scaling the brand from zero to over 1,100 followers and reaching more than 150,000 video views without any ad spend. Beyond the metrics, the campaign’s true success lies in its high-end positioning, which has already generated direct inquiries from developers and construction firms across NSW. In just 12 months, Gracia Building Design has successfully established itself as a premier luxury architectural studio with a commanding and recognizable online presence.",
+    "Starting in July 2025 with no online presence, Maria faced the challenge of launching Gracia Building Design in a highly competitive market. We established a premium digital identity through cinematic video production, educational content, and 'talking-head' segments that highlighted her expertise and positioned the brand as an approachable leader targeting high-end developments like duplexes and townhouses.\n\n This organic approach scaled the brand from zero to over 1,100 followers and 150,000+ video views without any ad spend. The high-end positioning has already generated direct inquiries from developers and construction firms across NSW, and in just 12 months Gracia Building Design has become a premier luxury architectural studio with a commanding online presence.",
   statsHeader: "Brand Report (NOV 2024 - TODAY)",
   stats: [
     {
@@ -64,17 +64,13 @@ export const graciaBuildingDesignData: ResultsTemplate = {
       body: "Strategically positioned the brand to compete immediately in the luxury residential and development sectors.",
     },
     {
-      header: "Content That Builds Trust",
-      body: "Used cinematic and personality-driven storytelling to humanize architectural expertise, building immediate rapport with prospects.",
-    },
-    {
       header: "It Created Real Momentum",
       body: "Content now serves as a high-intent lead engine, directly attracting developers and construction companies across NSW.",
     },
   ],
 
   testimonial:
-    "Working with you feels like having a conversation with a friend on camera. I feel supported, encouraged, and genuinely understood. It’s clear that you truly care about my business, which makes the whole experience comfortable and enjoyable. \n\nCreating content on my own was stressful; spending a couple of hours with the team and leaving the rest in their hands is absolutely worth the investment. It elevates the professionalism of my business and ensures I have consistent, scheduled content ready.",
+    "Working with you feels like having a conversation with a friend on camera. I feel supported, encouraged, and genuinely understood. It’s clear that you truly care about my business, which makes the whole experience comfortable and enjoyable. Creating content on my own was stressful; spending a couple of hours with the team and leaving the rest in their hands is absolutely worth the investment. It elevates the professionalism of my business and ensures I have consistent, scheduled content ready.",
   clientName: "Maria Camila Laverde",
   companyName: "Gracia Building Design",
   companyRole: "Owner & Operator",

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
-import { useBookingForm } from "../../context/BookingFormContext";
+import { useCalendly } from "../../context/CalendlyContext";
 
 interface WorkPath {
   name: string;
@@ -53,7 +53,7 @@ const paths: WorkPath[] = [
 
 export function WaysToWorkWithUs() {
   const [isHovered, setIsHovered] = useState(false);
-  const { openForm } = useBookingForm();
+  const { openCalendly } = useCalendly();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [isTouchLayout, setIsTouchLayout] = useState(false);
   const [inViewCards, setInViewCards] = useState<Set<string>>(new Set());
@@ -227,7 +227,7 @@ export function WaysToWorkWithUs() {
           style={{ background: "var(--accent-gradient)" }}
         >
           <button
-            onClick={openForm}
+            onClick={openCalendly}
             className="flex items-center justify-center gap-3 px-8 py-3 text-sm tracking-widest uppercase rounded-sm transition-colors duration-300"
             style={{
               background: isHovered ? "var(--accent-gradient)" : "var(--bg)",
