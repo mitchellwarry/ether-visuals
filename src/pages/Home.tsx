@@ -14,6 +14,7 @@ import { ReelShowcase } from "../components/sections/ReelShowcase";
 import { reelShowcaseItems } from "../data/reelShowcase";
 import { allCaseStudies } from "../data/index";
 import ResultsTemplate from "../components/sections/ResultsTemplate";
+import { HowWereDifferent } from "../components/sections/HowWe'reDifferent";
 
 export default function Home() {
   return (
@@ -30,6 +31,8 @@ export default function Home() {
       <ContentSystem />
       <BusinessShowcase items={businessShowcaseItems} />
       <ResultsTemplate items={allCaseStudies} />
+      <HowWereDifferent />
+      <BusinessShowcase items={businessShowcaseItems} />
       <WaysToWorkWithUs />
       <FAQ />
       <ReelShowcase items={reelShowcaseItems} />
