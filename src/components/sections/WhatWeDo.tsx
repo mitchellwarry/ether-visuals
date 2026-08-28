@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useCalendly } from "../../context/CalendlyContext";
 import bg1 from "../../assets/background images/P1153922.jpg";
 import bg2 from "../../assets/background images/P1078197.jpg";
 import bg3 from "../../assets/background images/ptpnov-21.jpg";
@@ -25,6 +26,7 @@ const services = [
 ];
 
 export function WhatWeDo() {
+  const { openCalendly } = useCalendly();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [hoveredBtn, setHoveredBtn] = useState<number | null>(null);
   const [isDesktop, setIsDesktop] = useState(
@@ -141,7 +143,10 @@ export function WhatWeDo() {
                     style={{ color: "var(--text-h)" }}
                     onMouseEnter={() => setHoveredBtn(i)}
                     onMouseLeave={() => setHoveredBtn(null)}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openCalendly();
+                    }}
                   >
                     Get Started
                     <svg
